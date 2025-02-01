@@ -7,4 +7,6 @@ public interface AttachmentWebMapper {
 
   List<AttachmentWeb> getByTodoId(Long todoId);
 
+  int insert(Long todoId, String url);
+
 }

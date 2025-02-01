@@ -18,4 +18,8 @@
     WHERE todo_id = #{todoId}
   </select>
 
+  <insert id="insert">
+    INSERT INTO attachments_web (todo_id, url)
+    VALUES (#{todoId}, #{url})
+  </insert>
 </mapper>

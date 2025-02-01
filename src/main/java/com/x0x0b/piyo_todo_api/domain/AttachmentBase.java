@@ -14,6 +14,8 @@ public class AttachmentBase {
 
   @JsonIgnore
   private Long id;
+  @JsonIgnore
+  private Long todoId;
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
   private AttachmentType type;
