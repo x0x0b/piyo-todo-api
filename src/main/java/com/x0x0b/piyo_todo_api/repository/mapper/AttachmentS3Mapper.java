@@ -7,4 +7,6 @@ public interface AttachmentS3Mapper {
 
   List<AttachmentS3> getByTodoId(Long todoId);
 
+  int insert(String bucketName, String keyName, String originalName, Long todoId);
+
 }
