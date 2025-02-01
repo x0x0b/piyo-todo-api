@@ -9,18 +9,31 @@
     <id property="id" column="id"/>
     <result property="title" column="title"/>
     <result property="description" column="description"/>
+    <result property="completed" column="completed"/>
     <result property="createdAt" column="created_at"/>
     <result property="updatedAt" column="updated_at"/>
   </resultMap>
 
   <select id="get" resultMap="TodoResultMap">
-    SELECT t.id, t.title, t.description, t.created_at, t.updated_at
-    FROM todos t
-    WHERE t.id = #{id}
+    SELECT id, title, description, completed, created_at, updated_at
+    FROM todos
+    WHERE id = #{id}
   </select>
 
   <insert id="add" parameterType="com.x0x0b.piyo_todo_api.domain.Todo">
     INSERT INTO todos (title, description)
     VALUES (#{title}, #{description})
   </insert>
+
+  <update id="set" parameterType="com.x0x0b.piyo_todo_api.domain.Todo">
+    UPDATE todos
+    SET title       = CASE WHEN #{title} IS NOT NULL THEN #{title} ELSE title END,
+        description = CASE
+                        WHEN #{description} IS NOT NULL THEN #{description}
+                        ELSE description END,
+        completed   = CASE
+                        WHEN #{completed} IS NOT NULL THEN #{completed}
+                        ELSE completed END
+    WHERE id = #{id}
+  </update>
 </mapper>

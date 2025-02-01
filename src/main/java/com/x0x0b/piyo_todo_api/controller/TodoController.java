@@ -7,4 +7,6 @@ public interface TodoController {
   Todo get(Long id);
 
   void add(Todo token);
+
+  void set(Todo token);
 }

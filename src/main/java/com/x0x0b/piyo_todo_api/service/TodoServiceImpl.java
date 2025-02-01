@@ -24,4 +24,8 @@ public class TodoServiceImpl implements TodoService {
   public int add(Todo todo) {
     return todoRepository.add(todo);
   }
+
+  public int set(Todo todo) {
+    return todoRepository.set(todo);
+  }
 }

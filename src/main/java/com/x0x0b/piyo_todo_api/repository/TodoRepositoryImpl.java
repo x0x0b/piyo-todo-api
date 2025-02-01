@@ -39,4 +39,8 @@ public class TodoRepositoryImpl implements TodoRepository {
   public int add(Todo todo) {
     return todoMapper.add(todo);
   }
+
+  public int set(Todo todo) {
+    return todoMapper.set(todo);
+  }
 }

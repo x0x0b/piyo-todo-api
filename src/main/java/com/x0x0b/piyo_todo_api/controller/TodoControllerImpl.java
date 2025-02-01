@@ -28,4 +28,9 @@ public class TodoControllerImpl implements TodoController {
   public void add(@RequestBody Todo todo) {
     todoService.add(todo);
   }
+
+  @PostMapping("/set")
+  public void set(@RequestBody Todo todo) {
+    todoService.set(todo);
+  }
 }
