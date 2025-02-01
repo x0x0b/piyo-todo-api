@@ -1,6 +1,7 @@
 package com.x0x0b.piyo_todo_api.controller;
 
 import com.x0x0b.piyo_todo_api.domain.Todo;
+import com.x0x0b.piyo_todo_api.dto.todo.TodoOperationRequest;
 import com.x0x0b.piyo_todo_api.service.TodoService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,12 +26,20 @@ public class TodoControllerImpl implements TodoController {
   }
 
   @PostMapping("/add")
-  public void add(@RequestBody Todo todo) {
+  public void add(@RequestBody TodoOperationRequest request) {
+    Todo todo = new Todo();
+    todo.setTitle(request.getTitle());
+    todo.setDescription(request.getDescription());
+    todo.setCompleted(request.isCompleted());
     todoService.add(todo);
   }
 
   @PostMapping("/set")
-  public void set(@RequestBody Todo todo) {
+  public void set(@RequestBody TodoOperationRequest request) {
+    Todo todo = new Todo();
+    todo.setTitle(request.getTitle());
+    todo.setDescription(request.getDescription());
+    todo.setCompleted(request.isCompleted());
     todoService.set(todo);
   }
 }

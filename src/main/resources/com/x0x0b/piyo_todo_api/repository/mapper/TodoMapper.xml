@@ -21,7 +21,7 @@
   </select>
 
   <insert id="add" parameterType="com.x0x0b.piyo_todo_api.domain.Todo">
-    INSERT INTO todos (title, description)
+    INSERT INTO todos (title, description, completed)
     VALUES (#{title}, #{description})
   </insert>
 
