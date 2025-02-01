@@ -5,7 +5,6 @@ import lombok.Getter;
 @Getter
 public class AttachWebRequest {
 
-  private Long todoId;
   private String url;
 
 }
