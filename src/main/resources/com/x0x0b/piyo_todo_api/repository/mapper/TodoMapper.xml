@@ -19,4 +19,8 @@
     WHERE t.id = #{id}
   </select>
 
+  <insert id="add" parameterType="com.x0x0b.piyo_todo_api.domain.Todo">
+    INSERT INTO todos (title, description)
+    VALUES (#{title}, #{description})
+  </insert>
 </mapper>

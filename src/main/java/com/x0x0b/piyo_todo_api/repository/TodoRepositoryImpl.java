@@ -35,4 +35,8 @@ public class TodoRepositoryImpl implements TodoRepository {
     attachments.addAll(attachmentWebMapper.getByTodoId(todoId));
     return attachments;
   }
+
+  public int add(Todo todo) {
+    return todoMapper.add(todo);
+  }
 }

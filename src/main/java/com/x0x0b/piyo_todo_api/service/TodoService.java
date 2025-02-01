@@ -6,4 +6,5 @@ public interface TodoService {
 
   Todo get(Long id);
 
+  int add(Todo todo);
 }

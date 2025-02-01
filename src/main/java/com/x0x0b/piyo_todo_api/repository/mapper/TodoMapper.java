@@ -8,4 +8,5 @@ public interface TodoMapper {
 
   Todo get(Long id);
 
+  int add(Todo todo);
 }

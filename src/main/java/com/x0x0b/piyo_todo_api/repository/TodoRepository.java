@@ -6,4 +6,5 @@ public interface TodoRepository {
 
   Todo get(Long id);
 
+  int add(Todo todo);
 }
