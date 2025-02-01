@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: piyo-todo-api
+  datasource:
+    url: jdbc:mysql://localhost:3306/todo
+    username: test
+    password: testpassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
