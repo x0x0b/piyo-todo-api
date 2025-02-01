@@ -14,7 +14,11 @@ public class TodoServiceImpl implements TodoService {
   }
 
   public Todo get(Long id) {
-    return todoRepository.get(id);
+    Todo todo = todoRepository.get(id);
+    if (todo == null) {
+      throw new RuntimeException("Todo not found");
+    }
+    return todo;
   }
 
 }
