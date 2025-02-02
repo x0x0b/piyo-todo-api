@@ -22,8 +22,10 @@ public class AttachmentS3RepositoryImpl implements AttachmentS3Repository {
   private S3Client s3;
   @Value("${piyo.aws.s3.region:ap-northeast-1}")
   private Region region;
-  @Value("${piyo.aws.s3.endpoint}")
+  @Value("${piyo.aws.s3.endpoint:s3.ap-northeast-1.amazonaws.com}")
   private URI endpoint;
+  @Value("${piyo.aws.s3.force-path-style:false}")
+  private boolean forcePathStyle;
   @Value("${piyo.aws.s3.bucket}")
   private String bucketName;
 
@@ -36,7 +38,7 @@ public class AttachmentS3RepositoryImpl implements AttachmentS3Repository {
     this.s3 = S3Client.builder()
         .region(region)
         .endpointOverride(endpoint)
-        .forcePathStyle(true)
+        .forcePathStyle(forcePathStyle)
         .build();
   }
 
