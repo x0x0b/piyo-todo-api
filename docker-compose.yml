@@ -9,6 +9,8 @@ services:
       MYSQL_PASSWORD: testpassword
     ports:
       - "3306:3306"
+    volumes:
+      - "${MYSQL_VOLUME_DIR:-./volumes/db_data}/:/var/lib/mysql"
 
   aws:
     image: localstack/localstack
@@ -18,3 +20,5 @@ services:
       - DEBUG=1
     ports:
       - "4566:4566"
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volumes/aws_data}:/var/lib/localstack"
