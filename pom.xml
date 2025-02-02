@@ -84,7 +84,7 @@
         <version>3.4.4</version>
         <configuration>
           <to>
-            <image>ghcr.io/x0x0b/piyo-todo-api:latest</image>
+            <image>${env.DOCKER_IMAGE}</image>
           </to>
         </configuration>
       </plugin>
