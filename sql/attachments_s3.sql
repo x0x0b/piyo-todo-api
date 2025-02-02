@@ -1,4 +1,4 @@
-CREATE TABLE attachments_s3
+CREATE TABLE IF NOT EXISTS attachments_s3
 (
     id          BIGINT AUTO_INCREMENT PRIMARY KEY,
     todo_id     BIGINT       NOT NULL,
