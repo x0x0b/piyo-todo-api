@@ -85,10 +85,6 @@
         <configuration>
           <to>
             <image>ghcr.io/x0x0b/piyo-todo-api:latest</image>
-            <auth>
-              <username>${env.REGISTRY_USERNAME}</username>
-              <password>${env.REGISTRY_PASSWORD}</password>
-            </auth>
           </to>
         </configuration>
       </plugin>

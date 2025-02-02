@@ -31,6 +31,3 @@ jobs:
 
       - name: Build and push Docker image
         run: mvn compile jib:build --Djib.to.tags=${{ github.sha }},latest
-        env:
-          REGISTRY_USERNAME: ${{ github.actor }}
-          REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
