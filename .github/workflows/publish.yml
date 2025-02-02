@@ -33,4 +33,4 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
-        run: mvn compile jib:build --Djib.to.tags=${{ github.sha }},latest
+        run: mvn compile jib:build -Djib.to.tags=${{ github.sha }},latest
