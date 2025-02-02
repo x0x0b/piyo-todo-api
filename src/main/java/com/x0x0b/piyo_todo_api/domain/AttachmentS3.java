@@ -1,6 +1,5 @@
 package com.x0x0b.piyo_todo_api.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.x0x0b.piyo_todo_api.enums.AttachmentType;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,10 +10,9 @@ import lombok.ToString;
 @ToString
 public class AttachmentS3 extends AttachmentBase implements Attachment {
 
-  @JsonIgnore
   private String bucketName;
-  @JsonIgnore
   private String keyName;
+  private String originalName;
 
   public AttachmentS3() {
     super(AttachmentType.S3);
