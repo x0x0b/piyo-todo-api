@@ -78,6 +78,20 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>jib-maven-plugin</artifactId>
+        <version>3.4.4</version>
+        <configuration>
+          <to>
+            <image>ghcr.io/x0x0b/piyo-todo-api:latest</image>
+            <auth>
+              <username>${env.REGISTRY_USERNAME}</username>
+              <password>${env.REGISTRY_PASSWORD}</password>
+            </auth>
+          </to>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
