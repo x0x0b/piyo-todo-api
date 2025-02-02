@@ -1,0 +1,20 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql-test
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: todo
+      MYSQL_USER: test
+      MYSQL_PASSWORD: testpassword
+    ports:
+      - "3306:3306"
+
+  aws:
+    image: localstack/localstack
+    container_name: localstack
+    environment:
+      - SERVICES=s3
+      - DEBUG=1
+    ports:
+      - "4566:4566"

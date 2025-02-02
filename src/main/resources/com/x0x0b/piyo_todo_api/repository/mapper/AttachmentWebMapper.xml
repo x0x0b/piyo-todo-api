@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.x0x0b.piyo_todo_api.repository.mapper.AttachmentWebMapper">
+
+  <resultMap id="AttachmentWebResultMap" type="com.x0x0b.piyo_todo_api.domain.AttachmentWeb">
+    <id property="id" column="id"/>
+    <result property="url" column="url"/>
+    <result property="createdAt" column="created_at"/>
+    <result property="updatedAt" column="updated_at"/>
+  </resultMap>
+
+  <select id="getByTodoId" resultMap="AttachmentWebResultMap">
+    SELECT id, url, created_at, updated_at
+    FROM attachments_web
+    WHERE todo_id = #{todoId}
+  </select>
+
+  <insert id="insert">
+    INSERT INTO attachments_web (todo_id, url)
+    VALUES (#{todoId}, #{url})
+  </insert>
+</mapper>
