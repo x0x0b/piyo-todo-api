@@ -9,6 +9,9 @@ services:
       MYSQL_PASSWORD: testpassword
     ports:
       - "3306:3306"
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/mysql
 
   aws:
     image: localstack/localstack
@@ -18,3 +21,9 @@ services:
       - DEBUG=1
     ports:
       - "4566:4566"
+    volumes:
+      - aws_data:/var/lib/localstack
+
+volumes:
+  db_data:
+  aws_data:
