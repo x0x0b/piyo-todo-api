@@ -17,6 +17,7 @@ public class S3ClientConfiguration {
 
   @Bean
   @Profile("local")
+  // ローカルではパススタイルのS3エンドポイントのみ使用可能
   public S3Client s3ClientLocal() {
     return S3Client.builder()
         .region(region)
@@ -27,6 +28,7 @@ public class S3ClientConfiguration {
 
   @Bean
   @Profile("!local")
+  // 本番環境ではパススタイルのS3エンドポイントは使用不可
   public S3Client s3Client() {
     return S3Client.builder()
         .region(region)
