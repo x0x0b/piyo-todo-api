@@ -14,3 +14,9 @@ MySQLの初期化スクリプトはボリューム作成後の初回のみ実行
 ```bash
 $ docker-compose down -v
 ```
+
+ローカル実行時はプロファイル `dev` を指定してください。
+
+```bash
+export SPRING_PROFILES_ACTIVE=dev
+```
