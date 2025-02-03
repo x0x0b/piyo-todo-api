@@ -9,14 +9,20 @@
     <id property="id" column="id"/>
     <result property="bucketName" column="bucket_name"/>
     <result property="keyName" column="key_name"/>
+    <result property="originalName" column="original_name"/>
     <result property="createdAt" column="created_at"/>
     <result property="updatedAt" column="updated_at"/>
   </resultMap>
 
   <select id="getByTodoId" resultMap="AttachmentS3ResultMap">
-    SELECT id, bucket_name, key_name, created_at, updated_at
+    SELECT id, bucket_name, key_name, original_name, created_at, updated_at
     FROM attachments_s3
     WHERE todo_id = #{todoId}
   </select>
+
+  <insert id="insert">
+    INSERT INTO attachments_s3 (bucket_name, key_name, original_name, todo_id)
+    VALUES (#{bucketName}, #{keyName}, #{originalName}, #{todoId})
+  </insert>
 
 </mapper>
