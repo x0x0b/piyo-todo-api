@@ -1,15 +1,12 @@
 package com.x0x0b.piyo_todo_api.repository;
 
 import com.x0x0b.piyo_todo_api.repository.mapper.AttachmentS3Mapper;
-import jakarta.annotation.PostConstruct;
 import java.io.IOException;
-import java.net.URI;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.sync.RequestBody;
-import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.S3Exception;
@@ -19,27 +16,14 @@ import software.amazon.awssdk.services.s3.model.S3Exception;
 public class AttachmentS3RepositoryImpl implements AttachmentS3Repository {
 
   private final AttachmentS3Mapper attachmentS3Mapper;
-  private S3Client s3;
-  @Value("${piyo.aws.s3.region:ap-northeast-1}")
-  private Region region;
-  @Value("${piyo.aws.s3.endpoint:s3.ap-northeast-1.amazonaws.com}")
-  private URI endpoint;
-  @Value("${piyo.aws.s3.force-path-style:false}")
-  private boolean forcePathStyle;
-  @Value("${piyo.aws.s3.bucket}")
+  private final S3Client s3;
+
+  @Value("${piyo-todo.aws.s3.bucket}")
   private String bucketName;
 
-  public AttachmentS3RepositoryImpl(AttachmentS3Mapper attachmentS3Mapper) {
+  public AttachmentS3RepositoryImpl(AttachmentS3Mapper attachmentS3Mapper, S3Client s3) {
     this.attachmentS3Mapper = attachmentS3Mapper;
-  }
-
-  @PostConstruct
-  public void init() {
-    this.s3 = S3Client.builder()
-        .region(region)
-        .endpointOverride(endpoint)
-        .forcePathStyle(forcePathStyle)
-        .build();
+    this.s3 = s3;
   }
 
   @Override
