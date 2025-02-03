@@ -1,4 +1,4 @@
-CREATE TABLE attachments_web
+CREATE TABLE IF NOT EXISTS attachments_web
 (
     id         BIGINT AUTO_INCREMENT PRIMARY KEY,
     todo_id    BIGINT        NOT NULL,
