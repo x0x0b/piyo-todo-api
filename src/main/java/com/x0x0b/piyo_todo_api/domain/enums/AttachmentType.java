@@ -1,4 +1,4 @@
-package com.x0x0b.piyo_todo_api.enums;
+package com.x0x0b.piyo_todo_api.domain.enums;
 
 public enum AttachmentType {
   S3(0),
