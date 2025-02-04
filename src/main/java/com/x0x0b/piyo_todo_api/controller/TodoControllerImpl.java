@@ -3,6 +3,7 @@ package com.x0x0b.piyo_todo_api.controller;
 import com.x0x0b.piyo_todo_api.domain.Todo;
 import com.x0x0b.piyo_todo_api.dto.todo.TodoOperationRequest;
 import com.x0x0b.piyo_todo_api.service.TodoService;
+import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,12 @@ public class TodoControllerImpl implements TodoController {
 
   public TodoControllerImpl(TodoService todoService) {
     this.todoService = todoService;
+  }
+
+  @Override
+  @GetMapping("/getList")
+  public List<Todo> getList() {
+    return todoService.getList();
   }
 
   @GetMapping("/get/{id}")

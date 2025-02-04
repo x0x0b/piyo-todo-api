@@ -23,6 +23,11 @@ public class TodoRepositoryImpl implements TodoRepository {
     this.attachmentWebMapper = attachmentWebMapper;
   }
 
+  @Override
+  public List<Todo> getList() {
+    return todoMapper.getList();
+  }
+
   public Todo get(Long id) {
     Todo todo = todoMapper.get(id);
     todo.setAttachments(getAttachments(id));

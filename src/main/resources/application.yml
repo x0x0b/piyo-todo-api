@@ -8,3 +8,8 @@ piyo-todo:
   aws:
     s3:
       bucket: piyo-todo
+      presigned:
+        # Presigned URL用のIAMユーザーのアクセスキーとシークレットキー
+        access-key-id: presigned-dummy-key
+        secret-access-key: presigned-dummy-secret
+        expiration-minutes: 10
