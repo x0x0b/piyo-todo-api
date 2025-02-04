@@ -8,16 +8,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class AttachmentWeb extends AttachmentBase implements Attachment {
+public class AttachmentWeb extends AttachmentBase {
 
   private String url;
 
   public AttachmentWeb() {
     super(AttachmentType.WEB);
-  }
-
-  @Override
-  public String getUrl() {
-    return url;
   }
 }
