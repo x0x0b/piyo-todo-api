@@ -1,26 +1,28 @@
 package com.x0x0b.piyo_todo_api.dto.attachment.s3;
 
-import java.util.List;
+import com.x0x0b.piyo_todo_api.domain.AttachmentS3;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-public class AttachmentS3Response {
+@Setter
+public class AttachmentS3Response extends AttachmentS3 {
 
-  public AttachmentS3Response(List<S3Response> s3Responses) {
-    this.s3Responses = s3Responses;
+  private String url;
+
+  public AttachmentS3Response() {
+    super();
   }
 
-  private List<S3Response> s3Responses;
-
-  @Getter
-  public static class S3Response {
-
-    public S3Response(String originalFilename, String url) {
-      this.originalFilename = originalFilename;
-      this.url = url;
-    }
-
-    private String originalFilename;
-    private String url;
+  public AttachmentS3Response(AttachmentS3 s3, String url) {
+    super();
+    this.setId(s3.getId());
+    this.setTodoId(s3.getTodoId());
+    this.setCreatedAt(s3.getCreatedAt());
+    this.setUpdatedAt(s3.getUpdatedAt());
+    this.setBucketName(s3.getBucketName());
+    this.setKeyName(s3.getKeyName());
+    this.setOriginalName(s3.getOriginalName());
+    this.url = url;
   }
 }

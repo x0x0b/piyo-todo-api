@@ -1,11 +1,12 @@
 package com.x0x0b.piyo_todo_api.controller;
 
+import com.x0x0b.piyo_todo_api.domain.AttachmentWeb;
 import com.x0x0b.piyo_todo_api.dto.attachment.web.AttachmentWebRequest;
-import com.x0x0b.piyo_todo_api.dto.attachment.web.AttachmentWebResponse;
+import java.util.List;
 
 public interface AttachmentWebController {
 
-  AttachmentWebResponse getList(Long todoId);
+  List<AttachmentWeb> getList(Long todoId);
 
   void add(AttachmentWebRequest request, Long todoId);
 }

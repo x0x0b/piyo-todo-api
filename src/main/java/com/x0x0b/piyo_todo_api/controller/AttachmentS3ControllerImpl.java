@@ -25,16 +25,17 @@ public class AttachmentS3ControllerImpl implements AttachmentS3Controller {
 
   @Override
   @GetMapping("/getList")
-  public AttachmentS3Response getList(@PathVariable("todoId") Long todoId) {
+  public List<AttachmentS3Response> getList(@PathVariable("todoId") Long todoId) {
     List<AttachmentS3> attachments = attachmentS3Service.getList(todoId);
-    List<AttachmentS3Response.S3Response> s3Responses = new ArrayList<>();
+    List<AttachmentS3Response> s3Responses = new ArrayList<>();
     for (AttachmentS3 attachment : attachments) {
-      s3Responses.add(new AttachmentS3Response.S3Response(
-              attachment.getOriginalName(), attachmentS3Service.getPresignedUrl(attachment.getKeyName())
-          )
+      AttachmentS3Response s3Response = new AttachmentS3Response(
+          attachment,
+          attachmentS3Service.getPresignedUrl(attachment.getKeyName())
       );
+      s3Responses.add(s3Response);
     }
-    return new AttachmentS3Response(s3Responses);
+    return s3Responses;
   }
 
   @Override

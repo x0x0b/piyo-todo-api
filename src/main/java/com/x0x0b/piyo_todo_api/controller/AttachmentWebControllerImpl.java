@@ -2,9 +2,7 @@ package com.x0x0b.piyo_todo_api.controller;
 
 import com.x0x0b.piyo_todo_api.domain.AttachmentWeb;
 import com.x0x0b.piyo_todo_api.dto.attachment.web.AttachmentWebRequest;
-import com.x0x0b.piyo_todo_api.dto.attachment.web.AttachmentWebResponse;
 import com.x0x0b.piyo_todo_api.service.AttachmentWebService;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,12 +23,8 @@ public class AttachmentWebControllerImpl implements AttachmentWebController {
 
   @Override
   @GetMapping("/getList")
-  public AttachmentWebResponse getList(Long todoId) {
-    List<AttachmentWebResponse.WebResponse> responses = new ArrayList<>();
-    for (AttachmentWeb attachmentWeb : attachmentWebService.getList(todoId)) {
-      responses.add(new AttachmentWebResponse.WebResponse(attachmentWeb.getUrl()));
-    }
-    return new AttachmentWebResponse(responses);
+  public List<AttachmentWeb> getList(Long todoId) {
+    return attachmentWebService.getList(todoId);
   }
 
   @Override
