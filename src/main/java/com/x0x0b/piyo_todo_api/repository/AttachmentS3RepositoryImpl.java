@@ -24,15 +24,18 @@ public class AttachmentS3RepositoryImpl implements AttachmentS3Repository {
 
   private final AttachmentS3Mapper attachmentS3Mapper;
   private final S3Client s3;
+  private final S3Presigner presigner;
 
   @Value("${piyo-todo.aws.s3.bucket}")
   private String bucketName;
-  @Value("${piyo-todo.aws.s3.presigned-url-expiration-minutes:10}")
+  @Value("${piyo-todo.aws.s3.presigned.expiration-minutes}")
   private int presignedUrlExpirationMinutes;
 
-  public AttachmentS3RepositoryImpl(AttachmentS3Mapper attachmentS3Mapper, S3Client s3) {
+  public AttachmentS3RepositoryImpl(AttachmentS3Mapper attachmentS3Mapper, S3Client s3,
+      S3Presigner presigner) {
     this.attachmentS3Mapper = attachmentS3Mapper;
     this.s3 = s3;
+    this.presigner = presigner;
   }
 
   @Override
@@ -62,20 +65,17 @@ public class AttachmentS3RepositoryImpl implements AttachmentS3Repository {
 
   @Override
   public String getPresignedUrl(String keyName) {
-    try (S3Presigner presigner = S3Presigner.create()) {
+    GetObjectRequest objectRequest = GetObjectRequest.builder()
+        .bucket(bucketName)
+        .key(keyName)
+        .build();
 
-      GetObjectRequest objectRequest = GetObjectRequest.builder()
-          .bucket(bucketName)
-          .key(keyName)
-          .build();
+    GetObjectPresignRequest presignRequest = GetObjectPresignRequest.builder()
+        .signatureDuration(Duration.ofMinutes(presignedUrlExpirationMinutes))
+        .getObjectRequest(objectRequest)
+        .build();
 
-      GetObjectPresignRequest presignRequest = GetObjectPresignRequest.builder()
-          .signatureDuration(Duration.ofMinutes(presignedUrlExpirationMinutes))
-          .getObjectRequest(objectRequest)
-          .build();
-
-      PresignedGetObjectRequest presignedRequest = presigner.presignGetObject(presignRequest);
-      return presignedRequest.url().toExternalForm();
-    }
+    PresignedGetObjectRequest presignedRequest = presigner.presignGetObject(presignRequest);
+    return presignedRequest.url().toExternalForm();
   }
 }
