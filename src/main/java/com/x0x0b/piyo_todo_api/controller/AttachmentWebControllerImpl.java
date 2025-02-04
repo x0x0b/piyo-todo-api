@@ -1,7 +1,7 @@
 package com.x0x0b.piyo_todo_api.controller;
 
 import com.x0x0b.piyo_todo_api.domain.AttachmentWeb;
-import com.x0x0b.piyo_todo_api.dto.attachment.web.AttachWebRequest;
+import com.x0x0b.piyo_todo_api.dto.attachment.web.AttachmentWebRequest;
 import com.x0x0b.piyo_todo_api.service.AttachmentWebService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +21,7 @@ public class AttachmentWebControllerImpl implements AttachmentWebController {
 
   @Override
   @PostMapping("/add")
-  public void add(@RequestBody AttachWebRequest request, @PathVariable("todoId") Long todoId) {
+  public void add(@RequestBody AttachmentWebRequest request, @PathVariable("todoId") Long todoId) {
     AttachmentWeb attachmentWeb = new AttachmentWeb();
     attachmentWeb.setTodoId(todoId);
     attachmentWeb.setUrl(request.getUrl());
