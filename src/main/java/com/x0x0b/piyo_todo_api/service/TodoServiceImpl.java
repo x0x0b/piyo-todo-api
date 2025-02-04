@@ -2,6 +2,7 @@ package com.x0x0b.piyo_todo_api.service;
 
 import com.x0x0b.piyo_todo_api.domain.Todo;
 import com.x0x0b.piyo_todo_api.repository.TodoRepository;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,6 +12,11 @@ public class TodoServiceImpl implements TodoService {
 
   public TodoServiceImpl(TodoRepository todoRepository) {
     this.todoRepository = todoRepository;
+  }
+
+  @Override
+  public List<Todo> getList() {
+    return todoRepository.getList();
   }
 
   public Todo get(Long id) {

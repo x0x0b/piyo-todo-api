@@ -14,6 +14,11 @@
     <result property="updatedAt" column="updated_at"/>
   </resultMap>
 
+  <select id="getList" resultMap="TodoResultMap">
+    SELECT id, title, description, completed, created_at, updated_at
+    FROM todos
+  </select>
+
   <select id="get" resultMap="TodoResultMap">
     SELECT id, title, description, completed, created_at, updated_at
     FROM todos

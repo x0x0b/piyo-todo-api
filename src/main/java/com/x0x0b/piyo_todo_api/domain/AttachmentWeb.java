@@ -8,7 +8,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class AttachmentWeb extends AttachmentBase {
+public class AttachmentWeb extends AttachmentBase implements Attachment {
 
   private String url;
 

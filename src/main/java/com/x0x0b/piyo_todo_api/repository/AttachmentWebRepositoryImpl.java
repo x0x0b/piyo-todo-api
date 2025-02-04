@@ -1,6 +1,8 @@
 package com.x0x0b.piyo_todo_api.repository;
 
+import com.x0x0b.piyo_todo_api.domain.AttachmentWeb;
 import com.x0x0b.piyo_todo_api.repository.mapper.AttachmentWebMapper;
+import java.util.List;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -10,6 +12,11 @@ public class AttachmentWebRepositoryImpl implements AttachmentWebRepository {
 
   public AttachmentWebRepositoryImpl(AttachmentWebMapper attachmentWebMapper) {
     this.attachmentWebMapper = attachmentWebMapper;
+  }
+
+  @Override
+  public List<AttachmentWeb> getList(Long todoId) {
+    return attachmentWebMapper.getByTodoId(todoId);
   }
 
   @Override

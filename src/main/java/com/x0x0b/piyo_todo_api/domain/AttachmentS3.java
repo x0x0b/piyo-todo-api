@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 @Getter
 @Setter
 @ToString
-public class AttachmentS3 extends AttachmentBase {
+public class AttachmentS3 extends AttachmentBase implements Attachment {
 
   private String bucketName;
   private String keyName;
