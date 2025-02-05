@@ -8,7 +8,7 @@ public interface TodoController {
 
   List<Todo> getList();
 
-  Todo get(Long id);
+  Todo get(Long todoId);
 
   void add(TodoOperationRequest token);
 
