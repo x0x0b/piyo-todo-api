@@ -1,5 +1,8 @@
 # piyo-todo-api
 
+構成等については Wiki に記載  
+https://github.com/x0x0b/piyo-todo-api/wiki
+
 ## ローカル実行
 
 以下でMySQL, AWSサーバ(LocalStack)が起動します。
