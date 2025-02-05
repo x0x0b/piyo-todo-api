@@ -4,6 +4,16 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
 piyo-todo:
   aws:
     s3:
