@@ -27,8 +27,8 @@ public class TodoControllerImpl implements TodoController {
     return todoService.getList();
   }
 
-  @GetMapping("/get/{id}")
-  public Todo get(@PathVariable("id") Long id) {
+  @GetMapping("/get/{todoId}")
+  public Todo get(@PathVariable("todoId") Long id) {
     return todoService.get(id);
   }
 
