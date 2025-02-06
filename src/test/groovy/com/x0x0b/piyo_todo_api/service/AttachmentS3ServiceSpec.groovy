@@ -26,13 +26,17 @@ class AttachmentS3ServiceSpec extends Specification {
     def "test upload"() {
         given:
         MultipartFile file = Mock()
+        String originalFilename = "test.jpg"
+        file.originalFilename >> originalFilename
         Long todoId = 1L
+        1 * attachmentS3Repository.uploadToS3(_, file)
+        1 * attachmentS3Repository.insert(_, originalFilename, todoId) >> 1
 
         when:
         attachmentS3Service.upload(file, todoId)
 
         then:
-        1 * attachmentS3Repository.upload(file, todoId)
+        noExceptionThrown()
     }
 
     def "test getPresignedUrl"() {
