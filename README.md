@@ -26,3 +26,4 @@ export SPRING_PROFILES_ACTIVE=local
 
 以下で Swagger UI が確認可能。  
 http://localhost:8080/swagger-ui/index.html
+a
