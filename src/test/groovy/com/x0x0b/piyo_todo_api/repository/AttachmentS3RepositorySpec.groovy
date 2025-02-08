@@ -80,7 +80,7 @@ class AttachmentS3RepositorySpec extends Specification {
         String url = "http://example.com"
         PresignedGetObjectRequest presignedGetObjectRequest = Mock()
         1 * s3Presigner.presignGetObject(_) >> presignedGetObjectRequest
-        1 * presignedGetObjectRequest.url() >> new URL(url)
+        1 * presignedGetObjectRequest.url() >> new URI(url).toURL()
 
         when:
         String presignedUrl = attachmentS3Repository.getPresignedUrl(keyName)
