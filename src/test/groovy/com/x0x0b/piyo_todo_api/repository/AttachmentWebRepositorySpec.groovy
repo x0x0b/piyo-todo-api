@@ -26,13 +26,14 @@ class AttachmentWebRepositorySpec extends Specification {
         given:
         Long todoId = 1L
         String url = "file_url"
-        1 * attachmentWebMapper.insert(todoId, url) >> 1
+        String name = "file_name"
+        1 * attachmentWebMapper.insert(todoId, url, name) >> 1
 
         when:
-        attachmentWebRepository.insert(todoId, url)
+        int result = attachmentWebRepository.insert(todoId, url, name)
 
         then:
-        noExceptionThrown()
+        result == 1
     }
 
 }
