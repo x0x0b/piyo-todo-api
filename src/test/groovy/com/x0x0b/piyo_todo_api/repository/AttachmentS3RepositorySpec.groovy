@@ -19,14 +19,22 @@ class AttachmentS3RepositorySpec extends Specification {
     def "test getList"() {
         given:
         Long todoId = 1L
-        List<AttachmentS3> mockAttachments = [new AttachmentS3()]
+        List<AttachmentS3> mockAttachments = [new AttachmentS3(todoId: 1L, keyName: "key", name: "filename")]
         1 * attachmentS3Mapper.getByTodoId(todoId) >> mockAttachments
+        PresignedGetObjectRequest presignedGetObjectRequest = Mock()
+        1 * s3Presigner.presignGetObject(_) >> presignedGetObjectRequest
+        1 * presignedGetObjectRequest.url() >> new URI("http://example.com").toURL()
 
         when:
         List<AttachmentS3> attachments = attachmentS3Repository.getList(todoId)
 
         then:
-        attachments == mockAttachments
+        attachments.size() == 1
+        attachments[0].todoId == todoId
+        attachments[0].keyName == "key"
+        attachments[0].name == "filename"
+        attachments[0].url == "http://example.com"
+
     }
 
     def "test insert"() {

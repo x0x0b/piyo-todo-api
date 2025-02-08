@@ -12,14 +12,16 @@ class AttachmentWebRepositorySpec extends Specification {
     def "test getList"() {
         given:
         Long todoId = 1L
-        List<AttachmentWeb> mockAttachments = [new AttachmentWeb()]
+        List<AttachmentWeb> mockAttachments = [new AttachmentWeb(todoId: todoId, url: "http://example.com")]
         1 * attachmentWebMapper.getByTodoId(todoId) >> mockAttachments
 
         when:
         List<AttachmentWeb> attachments = attachmentWebRepository.getList(todoId)
 
         then:
-        attachments == mockAttachments
+        attachments.size() == 1
+        attachments[0].todoId == todoId
+        attachments[0].url == "http://example.com"
     }
 
     def "test insert"() {
