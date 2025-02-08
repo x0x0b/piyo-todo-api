@@ -27,11 +27,13 @@ public class TodoControllerImpl implements TodoController {
     return todoService.getList();
   }
 
+  @Override
   @GetMapping("/get/{todoId}")
   public Todo get(@PathVariable("todoId") Long id) {
     return todoService.get(id);
   }
 
+  @Override
   @PostMapping("/add")
   public void add(@RequestBody TodoOperationRequest request) {
     Todo todo = new Todo();
@@ -41,6 +43,7 @@ public class TodoControllerImpl implements TodoController {
     todoService.add(todo);
   }
 
+  @Override
   @PostMapping("/set")
   public void set(@RequestBody TodoOperationRequest request) {
     Todo todo = new Todo();

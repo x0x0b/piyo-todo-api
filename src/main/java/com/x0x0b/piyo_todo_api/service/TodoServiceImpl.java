@@ -19,6 +19,7 @@ public class TodoServiceImpl implements TodoService {
     return todoRepository.getList();
   }
 
+  @Override
   public Todo get(Long id) {
     Todo todo = todoRepository.get(id);
     if (todo == null) {
@@ -27,10 +28,12 @@ public class TodoServiceImpl implements TodoService {
     return todo;
   }
 
+  @Override
   public int add(Todo todo) {
     return todoRepository.add(todo);
   }
 
+  @Override
   public int set(Todo todo) {
     return todoRepository.set(todo);
   }
