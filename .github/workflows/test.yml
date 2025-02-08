@@ -18,6 +18,7 @@ jobs:
         with:
           java-version: '21'
           distribution: 'adopt'
+          cache: 'maven'
 
       - name: Install dependencies
         run: mvn install -DskipTests
