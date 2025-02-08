@@ -12,5 +12,4 @@ public interface AttachmentS3Repository {
 
   void uploadToS3(String keyName, MultipartFile file);
 
-  String getPresignedUrl(String keyName);
 }

@@ -47,6 +47,7 @@ public class TodoControllerImpl implements TodoController {
   @PostMapping("/set")
   public void set(@RequestBody TodoOperationRequest request) {
     Todo todo = new Todo();
+    todo.setId(request.getId());
     todo.setTitle(request.getTitle());
     todo.setDescription(request.getDescription());
     todo.setCompleted(request.isCompleted());

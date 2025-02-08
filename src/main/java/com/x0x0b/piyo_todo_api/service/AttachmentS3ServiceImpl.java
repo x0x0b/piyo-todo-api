@@ -30,10 +30,4 @@ public class AttachmentS3ServiceImpl implements AttachmentS3Service {
     attachmentS3Repository.uploadToS3(keyName, file);
     attachmentS3Repository.insert(keyName, file.getOriginalFilename(), todoId);
   }
-
-  @Override
-  @Transactional
-  public String getPresignedUrl(String keyName) {
-    return attachmentS3Repository.getPresignedUrl(keyName);
-  }
 }
