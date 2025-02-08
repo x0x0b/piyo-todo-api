@@ -23,8 +23,8 @@ public class AttachmentWebServiceImpl implements AttachmentWebService {
 
   @Override
   @Transactional
-  public void add(AttachmentWeb attachmentWeb) {
-    attachmentWebRepository.insert(
+  public int add(AttachmentWeb attachmentWeb) {
+    return attachmentWebRepository.insert(
         attachmentWeb.getTodoId(),
         attachmentWeb.getUrl(),
         attachmentWeb.getName()

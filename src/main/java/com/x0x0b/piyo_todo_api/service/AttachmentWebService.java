@@ -7,6 +7,6 @@ public interface AttachmentWebService {
 
   List<AttachmentWeb> getList(Long todoId);
 
-  void add(AttachmentWeb attachmentWeb);
+  int add(AttachmentWeb attachmentWeb);
 
 }
