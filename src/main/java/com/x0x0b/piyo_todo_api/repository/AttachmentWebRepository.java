@@ -7,5 +7,5 @@ public interface AttachmentWebRepository {
 
   List<AttachmentWeb> getList(Long todoId);
 
-  void insert(Long todoId, String url);
+  void insert(Long todoId, String url, String name);
 }

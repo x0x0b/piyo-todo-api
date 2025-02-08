@@ -20,8 +20,8 @@ public class AttachmentWebRepositoryImpl implements AttachmentWebRepository {
   }
 
   @Override
-  public void insert(Long todoId, String url) {
-    attachmentWebMapper.insert(todoId, url);
+  public void insert(Long todoId, String url, String name) {
+    attachmentWebMapper.insert(todoId, url, name);
   }
 
 }
