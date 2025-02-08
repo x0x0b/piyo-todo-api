@@ -5,6 +5,7 @@ import com.x0x0b.piyo_todo_api.repository.AttachmentS3Repository;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
@@ -17,11 +18,13 @@ public class AttachmentS3ServiceImpl implements AttachmentS3Service {
   }
 
   @Override
+  @Transactional(readOnly = true)
   public List<AttachmentS3> getList(Long todoId) {
     return attachmentS3Repository.getList(todoId);
   }
 
   @Override
+  @Transactional
   public void upload(MultipartFile file, Long todoId) {
     String keyName = UUID.randomUUID().toString();
     attachmentS3Repository.uploadToS3(keyName, file);
@@ -29,6 +32,7 @@ public class AttachmentS3ServiceImpl implements AttachmentS3Service {
   }
 
   @Override
+  @Transactional
   public String getPresignedUrl(String keyName) {
     return attachmentS3Repository.getPresignedUrl(keyName);
   }

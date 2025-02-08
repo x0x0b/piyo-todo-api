@@ -4,9 +4,6 @@ on:
   pull_request:
     branches:
       - main
-  push:
-    branches:
-      - master
 
 jobs:
   test:
@@ -21,12 +18,7 @@ jobs:
         with:
           java-version: '21'
           distribution: 'adopt'
-
-      - name: Cache Maven packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          cache: 'maven'
 
       - name: Install dependencies
         run: mvn install -DskipTests
