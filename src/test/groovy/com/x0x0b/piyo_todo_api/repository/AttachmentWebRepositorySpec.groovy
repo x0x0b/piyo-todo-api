@@ -12,27 +12,30 @@ class AttachmentWebRepositorySpec extends Specification {
     def "test getList"() {
         given:
         Long todoId = 1L
-        List<AttachmentWeb> mockAttachments = [new AttachmentWeb()]
+        List<AttachmentWeb> mockAttachments = [new AttachmentWeb(todoId: todoId, url: "http://example.com")]
         1 * attachmentWebMapper.getByTodoId(todoId) >> mockAttachments
 
         when:
         List<AttachmentWeb> attachments = attachmentWebRepository.getList(todoId)
 
         then:
-        attachments == mockAttachments
+        attachments.size() == 1
+        attachments[0].todoId == todoId
+        attachments[0].url == "http://example.com"
     }
 
     def "test insert"() {
         given:
         Long todoId = 1L
         String url = "file_url"
-        1 * attachmentWebMapper.insert(todoId, url) >> 1
+        String name = "file_name"
+        1 * attachmentWebMapper.insert(todoId, url, name) >> 1
 
         when:
-        attachmentWebRepository.insert(todoId, url)
+        int result = attachmentWebRepository.insert(todoId, url, name)
 
         then:
-        noExceptionThrown()
+        result == 1
     }
 
 }

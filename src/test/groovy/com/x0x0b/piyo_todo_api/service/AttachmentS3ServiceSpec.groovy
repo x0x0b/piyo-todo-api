@@ -38,17 +38,4 @@ class AttachmentS3ServiceSpec extends Specification {
         then:
         noExceptionThrown()
     }
-
-    def "test getPresignedUrl"() {
-        given:
-        String keyName = "test-key"
-        String url = "http://example.com"
-        attachmentS3Repository.getPresignedUrl(keyName) >> url
-
-        when:
-        String result = attachmentS3Service.getPresignedUrl(keyName)
-
-        then:
-        result == url
-    }
 }

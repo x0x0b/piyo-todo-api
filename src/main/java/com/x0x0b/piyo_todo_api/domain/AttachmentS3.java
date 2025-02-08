@@ -12,7 +12,6 @@ public class AttachmentS3 extends AttachmentBase implements Attachment {
 
   private String bucketName;
   private String keyName;
-  private String originalName;
 
   public AttachmentS3() {
     super(AttachmentType.S3);

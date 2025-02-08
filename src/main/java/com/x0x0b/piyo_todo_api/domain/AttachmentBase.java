@@ -19,6 +19,8 @@ public class AttachmentBase {
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
   private AttachmentType type;
+  private String name;
+  private String url;
 
   public AttachmentBase(AttachmentType type) {
     this.type = type;

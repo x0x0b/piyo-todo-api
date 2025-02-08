@@ -24,13 +24,13 @@ class AttachmentWebServiceSpec extends Specification {
 
     def "test add"() {
         given:
-        AttachmentWeb attachmentWeb = new AttachmentWeb(todoId: 1L, url: "http://example.com")
-        attachmentWebRepository.insert(attachmentWeb.getTodoId(), attachmentWeb.getUrl()) >> 1
+        AttachmentWeb attachmentWeb = new AttachmentWeb(todoId: 1L, url: "http://example.com", name: "example")
+        1 * attachmentWebRepository.insert(attachmentWeb.getTodoId(), attachmentWeb.getUrl(), attachmentWeb.getName()) >> 1
 
         when:
-        attachmentWebService.add(attachmentWeb)
+        int result = attachmentWebService.add(attachmentWeb)
 
         then:
-        1 * attachmentWebRepository.insert(attachmentWeb.getTodoId(), attachmentWeb.getUrl())
+        result == 1
     }
 }

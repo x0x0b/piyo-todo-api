@@ -2,8 +2,6 @@ package com.x0x0b.piyo_todo_api.repository;
 
 import com.x0x0b.piyo_todo_api.domain.Attachment;
 import com.x0x0b.piyo_todo_api.domain.Todo;
-import com.x0x0b.piyo_todo_api.repository.mapper.AttachmentS3Mapper;
-import com.x0x0b.piyo_todo_api.repository.mapper.AttachmentWebMapper;
 import com.x0x0b.piyo_todo_api.repository.mapper.TodoMapper;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,19 +11,23 @@ import org.springframework.stereotype.Repository;
 public class TodoRepositoryImpl implements TodoRepository {
 
   private final TodoMapper todoMapper;
-  private final AttachmentS3Mapper attachmentS3Mapper;
-  private final AttachmentWebMapper attachmentWebMapper;
+  private final AttachmentS3Repository s3Repository;
+  private final AttachmentWebRepository webRepository;
 
-  public TodoRepositoryImpl(TodoMapper todoMapper, AttachmentS3Mapper attachmentS3Mapper,
-      AttachmentWebMapper attachmentWebMapper) {
+  public TodoRepositoryImpl(TodoMapper todoMapper, AttachmentS3Repository s3Repository,
+      AttachmentWebRepository webRepository) {
     this.todoMapper = todoMapper;
-    this.attachmentS3Mapper = attachmentS3Mapper;
-    this.attachmentWebMapper = attachmentWebMapper;
+    this.s3Repository = s3Repository;
+    this.webRepository = webRepository;
   }
 
   @Override
   public List<Todo> getList() {
-    return todoMapper.getList();
+    List<Todo> todos = todoMapper.getList();
+    for (Todo todo : todos) {
+      todo.setAttachments(getAttachments(todo.getId()));
+    }
+    return todos;
   }
 
   @Override
@@ -37,8 +39,8 @@ public class TodoRepositoryImpl implements TodoRepository {
 
   private List<Attachment> getAttachments(Long todoId) {
     List<Attachment> attachments = new ArrayList<>();
-    attachments.addAll(attachmentS3Mapper.getByTodoId(todoId));
-    attachments.addAll(attachmentWebMapper.getByTodoId(todoId));
+    attachments.addAll(s3Repository.getList(todoId));
+    attachments.addAll(webRepository.getList(todoId));
     return attachments;
   }
 

@@ -9,6 +9,4 @@ public interface AttachmentS3Service {
   List<AttachmentS3> getList(Long todoId);
 
   void upload(MultipartFile file, Long todoId);
-
-  String getPresignedUrl(String keyName);
 }

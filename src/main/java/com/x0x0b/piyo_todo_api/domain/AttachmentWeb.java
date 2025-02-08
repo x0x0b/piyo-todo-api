@@ -10,8 +10,6 @@ import lombok.ToString;
 @ToString
 public class AttachmentWeb extends AttachmentBase implements Attachment {
 
-  private String url;
-
   public AttachmentWeb() {
     super(AttachmentType.WEB);
   }

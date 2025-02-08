@@ -1,7 +1,6 @@
 package com.x0x0b.piyo_todo_api.controller;
 
 import com.x0x0b.piyo_todo_api.domain.Todo;
-import com.x0x0b.piyo_todo_api.dto.todo.TodoOperationRequest;
 import com.x0x0b.piyo_todo_api.service.TodoService;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +34,7 @@ public class TodoControllerImpl implements TodoController {
 
   @Override
   @PostMapping("/add")
-  public void add(@RequestBody TodoOperationRequest request) {
+  public void add(@RequestBody Todo request) {
     Todo todo = new Todo();
     todo.setTitle(request.getTitle());
     todo.setDescription(request.getDescription());
@@ -45,8 +44,9 @@ public class TodoControllerImpl implements TodoController {
 
   @Override
   @PostMapping("/set")
-  public void set(@RequestBody TodoOperationRequest request) {
+  public void set(@RequestBody Todo request) {
     Todo todo = new Todo();
+    todo.setId(request.getId());
     todo.setTitle(request.getTitle());
     todo.setDescription(request.getDescription());
     todo.setCompleted(request.isCompleted());
