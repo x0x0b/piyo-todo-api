@@ -1,7 +1,6 @@
 package com.x0x0b.piyo_todo_api.controller;
 
 import com.x0x0b.piyo_todo_api.domain.Todo;
-import com.x0x0b.piyo_todo_api.dto.todo.TodoOperationRequest;
 import java.util.List;
 
 public interface TodoController {
@@ -10,7 +9,7 @@ public interface TodoController {
 
   Todo get(Long todoId);
 
-  void add(TodoOperationRequest token);
+  void add(Todo token);
 
-  void set(TodoOperationRequest token);
+  void set(Todo token);
 }
