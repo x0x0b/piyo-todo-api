@@ -71,6 +71,7 @@ public class AttachmentS3RepositoryImpl implements AttachmentS3Repository {
     GetObjectRequest objectRequest = GetObjectRequest.builder()
         .bucket(bucketName)
         .key(keyName)
+        .responseContentDisposition("attachment; filename=\"" + keyName + "\"")
         .build();
 
     GetObjectPresignRequest presignRequest = GetObjectPresignRequest.builder()
