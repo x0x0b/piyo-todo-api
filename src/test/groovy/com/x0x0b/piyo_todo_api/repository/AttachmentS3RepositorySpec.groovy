@@ -85,13 +85,14 @@ class AttachmentS3RepositorySpec extends Specification {
     def "test getPresignedUrl"() {
         given:
         String keyName = "key"
+        String originalFileName = "original"
         String url = "http://example.com"
         PresignedGetObjectRequest presignedGetObjectRequest = Mock()
         1 * s3Presigner.presignGetObject(_) >> presignedGetObjectRequest
         1 * presignedGetObjectRequest.url() >> new URI(url).toURL()
 
         when:
-        String presignedUrl = attachmentS3Repository.getPresignedUrl(keyName)
+        String presignedUrl = attachmentS3Repository.getPresignedUrl(keyName, originalFileName)
 
         then:
         presignedUrl == url

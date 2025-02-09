@@ -42,7 +42,7 @@ public class AttachmentS3RepositoryImpl implements AttachmentS3Repository {
   public List<AttachmentS3> getList(Long todoId) {
     List<AttachmentS3> attachments = attachmentS3Mapper.getByTodoId(todoId);
     for (AttachmentS3 attachment : attachments) {
-      attachment.setUrl(getPresignedUrl(attachment.getKeyName()));
+      attachment.setUrl(getPresignedUrl(attachment.getKeyName(), attachment.getName()));
     }
     return attachments;
   }
@@ -67,10 +67,11 @@ public class AttachmentS3RepositoryImpl implements AttachmentS3Repository {
     }
   }
 
-  private String getPresignedUrl(String keyName) {
+  private String getPresignedUrl(String keyName, String filename) {
     GetObjectRequest objectRequest = GetObjectRequest.builder()
         .bucket(bucketName)
         .key(keyName)
+        .responseContentDisposition("attachment; filename=\"" + filename + "\"")
         .build();
 
     GetObjectPresignRequest presignRequest = GetObjectPresignRequest.builder()
